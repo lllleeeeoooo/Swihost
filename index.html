@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Swihost</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./libs/codemirror/codemirror.css">
+    <link rel="stylesheet" href="./libs/codemirror/plugin/material.css">
+    <link rel="stylesheet" href="./libs/codemirror/plugin/simplescrollbars.css">
+
+    <link rel="stylesheet" href="./libs/codemirror/plugin/dialog.css">
+
+    <link rel="stylesheet" href="./fonts.css">
+</head>
+<body>
+    <div class="page_left" id="page_left">
+        <div class="nano">
+            <div class="host_list nano-content" id="host_list"></div>
+        </div>
+    </div>
+    <div class="page_right">
+        <textarea class="content" id="content"></textarea>
+        <!-- <div class="content_tool">
+            <div class="save_button" id="save_button">save</div>
+        </div> -->
+    </div>
+    <div class="page_tool">
+        <div id="tool_edit_host" class="hide"><i class="icon-mode_edit"></i></div>
+        <div id="tool_add_host"><i class="icon-add"></i></div>
+        <div id="tool_del_host" class="hide"><i class="icon-delete_forever"></i></div>
+    </div>
+    <div class="page_alert hide" id="page_alert">
+        <div class="alert_mask"></div>
+        <div class="alert_container">
+            <div class="alert_title"></div>
+            <div class="alert_content"></div>
+            <div class="alert_button">
+                <div class="alert_cancel">Cancel</div>
+                <div class="alert_submit">Submit</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_notice" id="page_notice">
+        <i class="icon-info_outline"></i><span>Host saved successfully</span>
+    </div>
+
+    <div class="key_maps hide" id="key_maps">
+        <div class="key_maps_mask"></div>
+        <div class="key_maps_container">
+            <div class="key_maps_title">Hot keys</div>
+            <div class="key_maps_close"><i class="icon-close"></i></div>
+            <div class="key_item">
+                <span>Ctrl+N</span>
+                <span>- New</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+S</span>
+                <span>- Save</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+Q</span>
+                <span>- Quit</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+Z</span>
+                <span>- Undo</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+Y</span>
+                <span>- Redo</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+D</span>
+                <span>- Delete Line</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+F</span>
+                <span>- Search</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+G</span>
+                <span>- FindNext</span>
+            </div>
+            <div class="key_item">
+                <span>Shift+Ctrl+G</span>
+                <span>- FindPrev</span>
+            </div>
+            <div class="key_item">
+                <span>Shift+Ctrl+F</span>
+                <span>- Replace</span>
+            </div>
+            <div class="key_item">
+                <span>Shift+Ctrl+R</span>
+                <span>- Replace All</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+/</span>
+                <span>- Comment</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+Home</span>
+                <span>- GoDocStart</span>
+            </div>
+            <div class="key_item">
+                <span>Ctrl+End</span>
+                <span>- GoDocEnd</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_about hide" id="page_about">
+        <div class="page_about_mask"></div>
+        <div class="page_about_container">
+            <div class="page_about_title"></div>
+            <div class="page_about_close"><i class="icon-close"></i></div>
+            <div class="page_about_info">
+                <div><img src="./imges/logo@4x.png" alt=""></div>
+                <div class="page_about_name">
+                    <span>Swihost</span>
+                    <span>v2.0.01</span>
+                </div>
+                <div>The editor comes from Codemirror.</div>
+            </div>
+        </div>
+    </div>
+    <script src="./libs/jquery-1.9.0.js"></script>
+    <script src="./libs/nanoscroller.js"></script>
+    <script src="./libs/codemirror/codemirror.js"></script>
+    <script src="./libs/codemirror/plugin/python.js"></script>
+    <script src="./libs/codemirror/plugin/simplescrollbars.js"></script>
+
+    <script src="./libs/codemirror/plugin/dialog.js"></script>
+    <script src="./libs/codemirror/plugin/searchcursor.js"></script>
+    <script src="./libs/codemirror/plugin/search.js"></script>
+    <script src="./libs/codemirror/plugin/jump-to-line.js"></script>
+
+    <script src="./index.js"></script>
+</body>
+</html>

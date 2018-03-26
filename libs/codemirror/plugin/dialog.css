@@ -1,0 +1,92 @@
+.CodeMirror-dialog {
+  position: absolute;
+  left: 0; right: 0;
+  background: inherit;
+  z-index: 15;
+  height: 35px;
+  padding: 0 15px;
+  overflow: hidden;
+  color: inherit;
+  font-family: "Microsoft Yahei",Helvetica, Arial, Sans-Serif;
+  display: flex;
+  cursor: default;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.CodeMirror-dialog-top {
+  box-shadow: 0 0 5px #1e2127;
+  top: 0;
+}
+
+.CodeMirror-dialog-bottom {
+  border-top: 1px solid #eee;
+  bottom: 0;
+}
+
+.CodeMirror-dialog input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  /* font-family: monospace; */
+  height: 37px;
+  padding: 0 10px;
+  /* margin-top: 4px; */
+}
+
+/* .CodeMirror-dialog button {
+  font-size: 70%;
+} */
+
+.CodeMirror-search-label{
+  /* position: absolute;
+  top: 6px;
+  left: 15px; */
+  font-size: 14px;
+  color: #fff;
+  display: block;
+  line-height: 34px;
+}
+.CodeMirror-search-label > i{
+  font-size: 24px;
+  margin-right: 3px;
+}
+.CodeMirror-search-label > i, .CodeMirror-search-label > span{
+  display: inline-block;
+  vertical-align: middle;
+}
+.CodeMirror-search-input{
+  /* width: 100%; */
+  /* padding: 0 220px 0 80px; */
+  /* box-sizing: border-box; */
+  display: block;
+  flex: 2;
+}
+
+.CodeMirror-search-hint{
+  font-size: 12px;
+  color: #727986;
+  height: 35px;
+  line-height: 35px;
+  flex: 1;
+  background: #373d49;
+  min-width: 200px;
+}
+
+.CodeMirror-search-buttons{
+  position: absolute;
+  right: 15px;
+  top: 4px;
+}
+
+.CodeMirror-search-buttons > button{
+  padding: 5px 15px;
+  margin-left: 5px;
+  border-radius: 3px;
+  border: none;
+  background: #626b7b;
+  color: #fff;
+  outline: none;
+  font-size: 13px;
+}
