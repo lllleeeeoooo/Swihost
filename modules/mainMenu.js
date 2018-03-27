@@ -1,6 +1,8 @@
 const electron = require('electron');
 const {Menu, ipcMain} = electron;
 
+const update = require('./update');
+
 let mainWindow = null;
 const template = [{
     label: 'File',
@@ -22,10 +24,6 @@ const template = [{
         label: 'Quit',
         accelerator: 'CommandOrControl+Q',
         role: 'quit'
-    },{
-        label: 'Reload',
-        accelerator: 'CommandOrControl+R',
-        role: 'reload'
     }]
 }, {
     label: 'Edit',
@@ -101,6 +99,12 @@ const template = [{
         label: 'About',
         click: () => {
             mainWindow.webContents.send('main_menu_reply', 'about');
+        }
+    },{
+        label: 'Check update',
+        click: () => {
+            mainWindow.webContents.send('main_menu_reply', 'update');
+            update.check();
         }
     }] 
 }]

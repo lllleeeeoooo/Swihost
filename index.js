@@ -1,4 +1,5 @@
 const {ipcRenderer, remote} = require('electron');
+const package = require("./package.json");
 
 const os = process.platform;
 
@@ -13,6 +14,7 @@ let configObject = {};
 let editor = '';
 let systemHost = '';
 let editorDoc = '';
+let updateMessageDisplay = false;
 
 ipcRenderer.on('read_host_reply', (event, arg) => {
     configArray = arg;
@@ -191,13 +193,8 @@ hostList.on('click', '.switchButton', function(event){
     ipcRenderer.send('toggle_host_message', _id);
 })
 
-let clock = null;
 ipcRenderer.on('update_host_reply', (event, arg) => {
-    clearTimeout(clock);
-    clock = setTimeout(() => {
-        $('#page_notice').removeClass('open');
-    }, 1000);
-    $('#page_notice').addClass('open');
+    notice('Host saved successfully');
 })
 
 // 渲染进程与系统托盘菜单交互
@@ -242,8 +239,17 @@ ipcRenderer.on('main_menu_reply', (event, arg) => {
     }else if(arg == 'about'){
         keyMaps.addClass('hide');
         pageAbout.removeClass('hide');
+    }else if(arg == 'update'){
+        updateMessageDisplay = true;
     }
 })
+
+$('#about_versions').text('v' + package.version);
+let _info = '<span>Node: ' + process.versions.node + '</span>';
+_info += '<span>Electron: ' + process.versions.electron + '</span>';
+_info += '<span>Chrome: ' + process.versions.chrome + '</span>';
+// _info += '<span>V8: ' + process.versions.v8 + '</span>';
+$('#about_other_info').html(_info);
 
 // 重新定义快捷键，当浏览器和APP有相同快捷键相同方法时，有些快捷键可能会造成触发对象不是app而是浏览器
 $('body').on('keydown', function(){
@@ -390,15 +396,63 @@ function _alert(title, content, initCallback, callback, type){
     })
 }
 
+function notice(content, time){
+    let clock = null;
+    time = time || 2000;
+
+    clearTimeout(clock);
+    clock = setTimeout(() => {
+        $('#page_notice').removeClass('open');
+        $('#page_notice_content').html('');
+    }, time);
+
+    $('#page_notice_content').html(content);
+    $('#page_notice').addClass('open');
+}
+
 function createdId(){
     return 'H' + new Date().getTime() + 2 + parseInt(Math.random() * Math.pow(10, 8));
 }
 
+function calculateSize(size){
+    size = size / 1024;
+    if(size > 1024){
+        size = (size / 1024).toFixed(2) + ' MB';
+    }else if(size > 1048576){
+        size = (size / 1048576).toFixed(2) + ' GB';
+    }else{
+        size = size.toFixed(2) + ' KB';
+    }
+    return size;
+}
 
 // 程序更新
+const updateProgress = $('#update_progress');
 ipcRenderer.on('app_update_downloadProgress', (event, arg) => {
-    alert(arg)
+    let html = '<div class="progress_info"><span>'+ calculateSize(arg.transferred) +' / '+ calculateSize(arg.total) +'</span><span>'+ calculateSize(arg.bytesPerSecond) +'/S</span></div><div class="progress_block"><div></div></div>';
+
+    updateProgress.addClass('open').find('.progress_content').html(html);
+    updateProgress.find('.progress_block > div').css('width', arg.transferred / arg.total * 100 + '%');
 })
 ipcRenderer.on('app_update_message', (event, arg) => {
-    alert(arg)
+    let text = '';
+    
+    if(arg == 'updateNotAva'){
+        text = 'This is the latest version, which doesn\'t need to be updated.'
+    }else if(arg == 'error'){
+        text = 'Check the update error, please check whether the network is connected.'
+    }else{
+        return false;
+    }
+    if(updateMessageDisplay){ 
+        notice(text, 5000);
+    }
+})
+ipcRenderer.on('app_update_isUpdateNow', (event, arg) => {
+    updateProgress.addClass('open').find('.progress_content').html('<span>The latest update package has been downloaded.</span><span class="progress_install" id="progress_install">Install</span>');
+    $('#progress_install').click(function(){
+        updateProgress.removeClass('open');
+        $(this).addClass('hide');
+        ipcRenderer.send('isUpdateNow', true);
+    })
 })

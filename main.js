@@ -93,7 +93,8 @@ app.on('ready', () => {
     // 创建菜单栏
     mainMenu(mainWindow);
 
-    update(mainWindow);
+    // 自动更新程序初始化&检查
+    update.updateHandle(mainWindow);
 });
 
 // 当全部窗口关闭时退出。

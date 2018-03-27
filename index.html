@@ -42,7 +42,8 @@
     </div>
 
     <div class="page_notice" id="page_notice">
-        <i class="icon-info_outline"></i><span>Host saved successfully</span>
+        <i class="icon-info_outline"></i>
+        <span id="page_notice_content"></span>
     </div>
 
     <div class="key_maps hide" id="key_maps">
@@ -118,11 +119,17 @@
                 <div><img src="./imges/logo@4x.png" alt=""></div>
                 <div class="page_about_name">
                     <span>Swihost</span>
-                    <span>v2.0.01</span>
+                    <span id="about_versions"></span>
                 </div>
+                <div id="about_other_info" class="about_other_info"></div>
                 <div>The editor comes from Codemirror.</div>
             </div>
         </div>
+    </div>
+
+    <div class="update_progress" id="update_progress">
+        <div><i class="icon-vertical_align_bottom"></i></div>
+        <div class="progress_content"></div>
     </div>
     <script src="./libs/jquery-1.9.0.js"></script>
     <script src="./libs/nanoscroller.js"></script>

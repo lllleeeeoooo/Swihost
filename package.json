@@ -1,0 +1,46 @@
+{
+  "name": "swihost",
+  "version": "1.2.5",
+  "main": "main.js",
+  "description": "Easy to change and switch the host file.",
+  "author": "lleeoo",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "electron-updater": "^2.21.3"
+  },
+  "build": {
+    "appId": "com.swihost.app",
+    "productName": "swihost",
+    "icon": "./imges",
+    "electronVersion": "1.8.4",
+    "asar": true,
+    "publish": [
+      {
+        "provider": "github",
+        "vPrefixedTagName": true
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "runAfterFinish": true,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "perMachine": true
+    }
+  },
+  "scripts": {
+    "dist": "electron-builder -wm"
+  }
+}
