@@ -247,7 +247,7 @@ ipcRenderer.on('main_menu_reply', (event, arg) => {
 $('#about_versions').text('v' + package.version);
 let _info = '<span>Node: ' + process.versions.node + '</span>';
 _info += '<span>Electron: ' + process.versions.electron + '</span>';
-_info += '<span>Chrome: ' + process.versions.chrome + '</span>';
+_info += '<span>Chromium: ' + process.versions.chrome + '</span>';
 // _info += '<span>V8: ' + process.versions.v8 + '</span>';
 $('#about_other_info').html(_info);
 

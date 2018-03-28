@@ -1,6 +1,6 @@
 {
   "name": "swihost",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "main": "main.js",
   "description": "Easy to change and switch the host file.",
   "author": "lleeoo",
@@ -37,7 +37,8 @@
       "runAfterFinish": true,
       "allowToChangeInstallationDirectory": true,
       "deleteAppDataOnUninstall": true,
-      "perMachine": true
+      "perMachine": true,
+      "createStartMenuShortcut": true
     }
   },
   "scripts": {

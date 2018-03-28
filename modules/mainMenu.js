@@ -1,5 +1,5 @@
 const electron = require('electron');
-const {Menu, ipcMain} = electron;
+const {Menu, ipcMain, shell} = electron;
 
 const update = require('./update');
 
@@ -99,6 +99,11 @@ const template = [{
         label: 'About',
         click: () => {
             mainWindow.webContents.send('main_menu_reply', 'about');
+        }
+    },{
+        label: 'Feedback',
+        click: () => {
+            shell.openExternal('https://github.com/lllleeeeoooo/Swihost/issues');
         }
     },{
         label: 'Check update',

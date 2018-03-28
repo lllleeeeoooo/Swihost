@@ -1,6 +1,6 @@
 const path = require('path');
 const electron = require('electron');
-const {Tray, Menu, ipcMain} = electron;
+const {Tray, Menu, ipcMain, shell} = electron;
 
 let appTray = '';
 let contextMenu = '';
@@ -40,6 +40,11 @@ function createTray(app, mainWindow, hostList){
     menu.push({
         label: '-',
         type: 'separator'
+    },{
+        label: 'Feedback',
+        click: () => {
+            shell.openExternal('https://github.com/lllleeeeoooo/Swihost/issues');
+        }
     },{
         label: 'Quit Swihost',
         click: () => {
