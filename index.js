@@ -18,7 +18,7 @@ let updateMessageDisplay = false;
 
 ipcRenderer.on('read_host_reply', (event, arg) => {
     configArray = arg;
-    let html = '<div class="active system_host" data-id="10000"><i class="icon-desktop_windows"></i><span class="host_name">System Host</span><i class="icon-lock_outline"></i></div>';
+    let html = '<div class="active system_host" data-id="10000"><i class="icon-desktop_windows"></i><span class="host_name">System Host</span><i class="icon-lock"></i></div>';
     systemHost = '';
     for(let i = 0; i < arg.length; i++){
         let item = JSON.parse(arg[i]),

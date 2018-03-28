@@ -66,7 +66,7 @@ input{
 .page_left .host_list .system_host i:last-child{
     position: absolute;
     right: 7px;
-    font-size: 14px;
+    font-size: 17px;
     color: #8e95a5;
     top: 15px;
 }
