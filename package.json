@@ -1,6 +1,6 @@
 {
   "name": "swihost",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "main": "main.js",
   "description": "Easy to change and switch the host file.",
   "author": "lleeoo",
@@ -12,7 +12,7 @@
   },
   "build": {
     "appId": "com.swihost.app",
-    "productName": "swihost",
+    "productName": "Swihost",
     "icon": "./imges",
     "electronVersion": "1.8.4",
     "asar": true,
