@@ -15,8 +15,12 @@ let host = {
         return data;
     },
     // 写入系统host文件
-    writeSystemHostFile: (data) => {
-        fs.writeFileSync(sysHostPath, data);
+    writeSystemHostFile: (event, data) => {
+        try {
+            fs.writeFileSync(sysHostPath, data)
+        } catch (error) {
+            event.sender.send('write_file_error', error.message);
+        }
     },
     // 获取个人用户host配置文件
     getUserHostConfig: (data) => {
@@ -45,7 +49,7 @@ let host = {
 
 // 修改host内容消息
 ipcMain.on('update_host_message', (event, arg) => {
-    arg.systemHost && host.writeSystemHostFile(arg.systemHost);
+    arg.systemHost && host.writeSystemHostFile(event, arg.systemHost);
     fs.writeFileSync(fileUrl, JSON.stringify(arg.configArray));
     event.sender.send('update_host_reply', 'Host saved successfully');
 })

@@ -1,4 +1,4 @@
-const {ipcRenderer, remote} = require('electron');
+const {ipcRenderer, remote, shell} = require('electron');
 const package = require("./package.json");
 
 const os = process.platform;
@@ -250,6 +250,9 @@ _info += '<span>Electron: ' + process.versions.electron + '</span>';
 _info += '<span>Chromium: ' + process.versions.chrome + '</span>';
 // _info += '<span>V8: ' + process.versions.v8 + '</span>';
 $('#about_other_info').html(_info);
+$('#swihost_link').click(function(){
+    shell.openExternal('https://github.com/lllleeeeoooo/Swihost/releases');
+})
 
 // 重新定义快捷键，当浏览器和APP有相同快捷键相同方法时，有些快捷键可能会造成触发对象不是app而是浏览器
 $('body').on('keydown', function(){
@@ -374,15 +377,25 @@ function saveHostData(){
 
 // 弹窗
 function _alert(title, content, initCallback, callback, type){
-    let alertElement = $('#page_alert');
+    let alertElement = $('#page_alert'),
+        alertSubmit = alertElement.find('.alert_submit');
+        alertCancel = alertElement.find('.alert_cancel');
+
     alertElement.find('.alert_title').text(title);
     alertElement.find('.alert_content').html(content);
+    if(type == 'single'){
+        alertCancel.text('Ok')
+        alertSubmit.addClass('hide')
+    }else{
+        alertCancel.text('Cancel')
+        alertSubmit.removeClass('hide')
+    }
     alertElement.removeClass('hide');
     initCallback && initCallback();
     if(type == 'delete'){
-        alertElement.find('.alert_submit').addClass('alert_delete').text('Delete');
+        alertSubmit.addClass('alert_delete').text('Delete');
     }else{
-        alertElement.find('.alert_submit').removeClass('alert_delete').text('Submit');
+        alertSubmit.removeClass('alert_delete').text('Submit');
     }
     alertElement.off().on('click', '.alert_submit', function(){
         callback && callback(alertElement);
@@ -391,7 +404,7 @@ function _alert(title, content, initCallback, callback, type){
     }).on('keydown', 'input', function(){
         if(event.keyCode == 13){
             event.preventDefault();
-            alertElement.find('.alert_submit').click();
+            alertSubmit.click();
         }
     })
 }
@@ -455,4 +468,8 @@ ipcRenderer.on('app_update_isUpdateNow', (event, arg) => {
         $(this).addClass('hide');
         ipcRenderer.send('isUpdateNow', true);
     })
+})
+
+ipcRenderer.on('write_file_error', (event, arg) => {
+    _alert('Swihost error', arg + '\nPlease run Swihost as an Administrator.', '', '', 'single')
 })

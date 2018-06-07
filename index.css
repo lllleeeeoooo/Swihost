@@ -412,6 +412,7 @@ input{
 .page_about_name span:first-child{
     font-size: 18px;
     margin-top: 15px;
+    text-decoration: underline;
 }
 .page_about_name span:last-child{
     font-size: 13px;

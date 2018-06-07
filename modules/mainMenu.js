@@ -42,9 +42,9 @@ const template = [{
     },{
         type: 'separator'
     },{
-        label: 'Cut',
+        label: 'Reload',
         accelerator: 'CommandOrControl+X',
-        role: 'cut'
+        role: 'reload'
     },{
         label: 'Copy',
         accelerator: 'CommandOrControl+C',
@@ -111,7 +111,7 @@ const template = [{
             mainWindow.webContents.send('main_menu_reply', 'update');
             update.check();
         }
-    }] 
+    }]
 }]
 
 function mainMenuInit(window){
