@@ -42,9 +42,9 @@ const template = [{
     },{
         type: 'separator'
     },{
-        label: 'Reload',
+        label: 'Cut',
         accelerator: 'CommandOrControl+X',
-        role: 'reload'
+        role: 'cut'
     },{
         label: 'Copy',
         accelerator: 'CommandOrControl+C',
